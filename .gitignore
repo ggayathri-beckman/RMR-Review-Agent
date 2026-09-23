@@ -12,9 +12,7 @@ __pycache__/
 Thumbs.db
 
 # Confidential documents - never commit real reports
-rmr/*
-reports/*
-templates/*
+
 !rmr/README.txt
 !reports/README.txt
 !templates/README.txt
