@@ -1,0 +1,27 @@
+# Python
+env/
+.venv/
+__pycache__/
+*.pyc
+
+# Editor / OS
+.vs/
+.vscode/*
+!.vscode/tasks.json
+.DS_Store
+Thumbs.db
+
+# Confidential documents - never commit real reports
+rmr/*
+reports/*
+templates/*
+!rmr/README.txt
+!reports/README.txt
+!templates/README.txt
+
+# Generated review output
+*.reviewed.docx
+*-RMR-Review.txt
+
+# Word temp files
+~$*

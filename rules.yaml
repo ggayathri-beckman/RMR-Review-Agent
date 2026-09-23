@@ -1,0 +1,135 @@
+scoring:
+  weights:
+    critical: 5
+    major: 3
+    minor: 1
+
+rules:
+  - id: placeholders-unfilled
+    description: Template placeholders and bracket or merge-field patterns must be replaced with real content.
+    severity: critical
+    type: placeholder_tokens
+    tokens:
+      - EnterInformationHere
+      - EnterProductName
+      - EnterProjectName
+      - EnterProjectNumber
+      - EnterDocumentNoOrID
+      - EnterDocNumOrID
+      - Project Doc Num
+    patterns:
+      - "<<[^>]+>>"
+      - "\u00ab[^\u00bb]+\u00bb"
+      - "TM-XXX"
+
+  - id: blue-updated
+    description: All blue placeholder text must be updated from the template.
+    severity: critical
+    type: blue_must_change
+
+  - id: black-unchanged
+    description: Black boilerplate text must not be altered.
+    severity: major
+    type: black_must_match
+
+  - id: template-content-removed
+    description: Template Instructions, Translations, and template Change Control pages must be deleted from the final report.
+    severity: major
+    type: must_be_removed
+    markers:
+      - "TEMPLATE INSTRUCTIONS"
+      - "BEFORE USING THIS TEMPLATE"
+      - "USING THIS TEMPLATE"
+      - "FINALIZING YOUR DOCUMENT"
+      - "Delete all blue text instructions"
+      - "QMS Template for Templates"
+
+  - id: section-3-1
+    description: Section 3.1 Threat Risk Disposition must be present.
+    severity: major
+    type: required_section
+    target: "Threat Risk Disposition"
+
+  - id: section-3-2
+    description: Section 3.2 List of Unmitigated Vulnerability Findings must be present.
+    severity: major
+    type: required_section
+    target: "Unmitigated Vulnerability Findings"
+
+  - id: section-3-3
+    description: Section 3.3 Security Risk Summary must be present.
+    severity: major
+    type: required_section
+    target: "Security Risk Summary"
+
+  - id: section-3-4
+    description: Section 3.4 Conclusion must be present.
+    severity: major
+    type: required_section
+    target: "Conclusion"
+
+  - id: section-change-control
+    description: Section 4 Document Revision Change Control must be present.
+    severity: minor
+    type: required_section
+    target: "Document Revision Change Control"
+
+  - id: field-product-name
+    description: PRODUCT NAME field must be present.
+    severity: major
+    type: required_section
+    target: "PRODUCT NAME"
+
+  - id: field-project-name
+    description: PROJECT NAME field must be present.
+    severity: major
+    type: required_section
+    target: "PROJECT NAME"
+
+  - id: field-project-number
+    description: PROJECT NUMBER field must be present.
+    severity: major
+    type: required_section
+    target: "PROJECT NUMBER"
+
+# Security activities the RMR may claim. For each activity that is mentioned in
+# the RMR, a matching supporting report must exist in the reports/ folder
+# (matched by file name or by content). This drives the PRECISION score:
+#   precision = backed activities / claimed activities.
+activities:
+  - name: SAST
+    severity: critical
+    aliases: ["SAST", "Static Application Security Testing", "static analysis", "static code analysis"]
+
+  - name: DAST
+    severity: critical
+    aliases: ["DAST", "Dynamic Application Security Testing", "dynamic analysis"]
+
+  - name: VA
+    severity: critical
+    aliases: ["VA", "Vulnerability Assessment", "vulnerability scan", "vulnerability scanning"]
+
+  - name: Penetration Test
+    severity: critical
+    aliases: ["Penetration Test", "Pen Test", "PenTest", "pentest", "penetration testing"]
+
+  - name: SCA
+    severity: major
+    aliases: ["SCA", "Software Composition Analysis", "dependency scan", "OSS scan"]
+
+  - name: SBOM
+    severity: major
+    aliases: ["SBOM", "Software Bill of Materials"]
+
+  - name: Threat Model
+    severity: major
+    aliases: ["Threat Model", "Threat Modeling", "TARA", "threat and risk analysis"]
+
+  - name: CRA
+    severity: major
+    aliases: ["CRA", "Cybersecurity Risk Assessment"]
+
+  - name: Fuzz Testing
+    severity: minor
+    aliases: ["Fuzz Testing", "Fuzzing", "fuzz test"]
+

@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "RMR: Review report",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "src/review_agent.py",
+                "--rmr", "${input:rmrPath}",
+                "--reports", "reports",
+                "--template", "${input:templatePath}"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "RMR: Review report + write comments",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "src/review_agent.py",
+                "--rmr", "${input:rmrPath}",
+                "--reports", "reports",
+                "--template", "${input:templatePath}",
+                "--write-comments"
+            ],
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "rmrPath",
+            "type": "promptString",
+            "description": "Path to the RMR .docx to review",
+            "default": "rmr/report.docx"
+        },
+        {
+            "id": "templatePath",
+            "type": "promptString",
+            "description": "Path to the template .docx",
+            "default": "templates/RMR_Template.docx"
+        }
+    ]
+}
